@@ -1,0 +1,132 @@
+#N canvas 0 0 1920 976 10;
+#X obj 326 391 textfile;
+#X obj 323 486 print;
+#X obj 441 232 openpanel;
+#X obj 405 114 bng 41 250 50 0 empty empty Select\ file 0 -15 0 10
+#fcfcfc #000000 #000000;
+#X symbolatom 416 259 40 0 0 0 - - -, f 40;
+#X obj 410 228 bng 23 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
+#000000 #000000;
+#X msg 358 235 rewind;
+#X obj 323 80 bng 75 250 50 0 empty empty Start\ processing\ the\ file
+0 -20 0 20 #fcfcfc #ff040b #000000;
+#X obj 415 286 list prepend read;
+#X obj 415 342 list trim;
+#X obj 322 34 loadbang;
+#N canvas -8 -8 1936 992 isSafe 1;
+#X obj 312 28 inlet;
+#X obj 288 432 outlet;
+#X obj 111 111 list split 1;
+#X obj 85 151 list trim;
+#X obj 83 176 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+#fcfcfc #000000 #000000 70 256 0;
+#X obj 176 150 list split 1;
+#X obj 164 182 list trim;
+#X obj 162 215 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+#fcfcfc #000000 #000000 70 256 0;
+#X obj 160 307 list prepend set;
+#X msg 126 393;
+#X obj 160 333 list trim;
+#X obj 78 330 bng 15 50 10 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000;
+#X obj 78 306 sel 1;
+#X obj 584 307 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+#fcfcfc #000000 #000000 70 256 0;
+#X obj 438 307 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+#fcfcfc #000000 #000000 56 256 0;
+#X obj 478 194 t b b;
+#X obj 439 391 sel 1;
+#X obj 722 135 list split 1;
+#X obj 755 176 list split 1;
+#X obj 674 177 list trim;
+#X obj 773 209 list trim;
+#X obj 305 74 t l l;
+#X obj 665 257 expr if($i1<=$i2 \, 1 \, 0);
+#X obj 674 293 tgl 15 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000 1 1;
+#X obj 32 253 expr if(abs($i1-$i2)<=3 \, if($i3 == 1 \, if($i1<=$i2
+\, if($i1!=$i2 \, 1 \, 0) \, 0) \, if($i1>=$i2 \, if($i1!=$i2 \, 1
+\, 0) \, 0)) \, 0);
+#X obj 454 345 expr if(abs($i1-$i2)<=2 \, if($i3 == 1 \, if($i1<=$i2
+\, if($i1!=$i2 \, 1 \, 0) \, 0) \, if($i1>=$i2 \, if($i1!=$i2 \, 1
+\, 0) \, 0)) \, 0);
+#X connect 0 0 21 0;
+#X connect 2 0 3 0;
+#X connect 2 1 5 0;
+#X connect 2 1 8 0;
+#X connect 3 0 4 0;
+#X connect 3 0 14 0;
+#X connect 4 0 24 0;
+#X connect 5 0 6 0;
+#X connect 5 2 15 0;
+#X connect 6 0 7 0;
+#X connect 6 0 13 0;
+#X connect 7 0 24 1;
+#X connect 8 0 10 0;
+#X connect 9 0 2 0;
+#X connect 10 0 9 0;
+#X connect 11 0 9 0;
+#X connect 12 0 11 0;
+#X connect 13 0 25 1;
+#X connect 14 0 25 0;
+#X connect 15 0 14 0;
+#X connect 15 1 13 0;
+#X connect 16 0 1 0;
+#X connect 17 0 19 0;
+#X connect 17 1 18 0;
+#X connect 18 0 20 0;
+#X connect 19 0 22 0;
+#X connect 20 0 22 1;
+#X connect 21 0 2 0;
+#X connect 21 1 17 0;
+#X connect 22 0 23 0;
+#X connect 23 0 24 2;
+#X connect 23 0 25 2;
+#X connect 24 0 12 0;
+#X connect 25 0 16 0;
+#X restore 672 374 pd isSafe;
+#X obj 415 314 list append cr;
+#X msg 220 234 0;
+#X msg 253 233 1;
+#X obj 399 464 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
+#000000 #000000;
+#X obj 211 271 tgl 15 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000 0 1;
+#X text 8 299 Unsatisfying solution but \; needed to avoid stack overflow
+;
+#X obj 323 194 t b b b b;
+#X msg 786 353 0;
+#X obj 673 395 bng 36 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
+#000000 #000000;
+#X obj 707 445 + 1;
+#X floatatom 671 474 21 0 0 0 - - -, f 21;
+#X obj 672 446 int 1;
+#X obj 205 303 metro 10;
+#X connect 0 0 1 0;
+#X connect 0 0 11 0;
+#X connect 0 1 13 0;
+#X connect 0 1 15 0;
+#X connect 2 0 4 0;
+#X connect 3 0 2 0;
+#X connect 4 0 8 0;
+#X connect 5 0 4 0;
+#X connect 6 0 0 0;
+#X connect 7 0 18 0;
+#X connect 8 0 12 0;
+#X connect 9 0 0 0;
+#X connect 10 0 7 0;
+#X connect 11 0 20 0;
+#X connect 12 0 9 0;
+#X connect 13 0 16 0;
+#X connect 14 0 16 0;
+#X connect 16 0 24 0;
+#X connect 18 0 14 0;
+#X connect 18 1 6 0;
+#X connect 18 2 5 0;
+#X connect 18 3 19 0;
+#X connect 19 0 23 0;
+#X connect 20 0 23 0;
+#X connect 21 0 23 1;
+#X connect 23 0 21 0;
+#X connect 23 0 22 0;
+#X connect 24 0 0 0;
